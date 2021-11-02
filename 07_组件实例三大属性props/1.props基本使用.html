@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>props基本使用</title>
+</head>
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <div id="test3"></div>
+
+    <!-- 引入react核心库，必须在react-dom之前引入 -->
+    <script src="../js/react.development.js"></script>
+    <!-- 引入react-dom，用于支持react操作DOM -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入babel，用于将jsx转为js -->
+    <script src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+        // 创建组件
+        class Person extends React.Component{
+            render(){
+                // console.log(this)
+                const {name,age,sex} = this.props
+                return (
+                    <ul>
+                        <li>姓名：{name}</li>
+                        <li>性别：{sex}</li>
+                        <li>年龄：{age+1}</li>
+                    </ul>
+                )
+            }
+        }
+        // 渲染组件到页面
+        ReactDOM.render(<Person name="Tom" age={18} sex="男"/>,document.getElementById('test1'))
+        ReactDOM.render(<Person name="Jerry" age={19} sex="男"/>,document.getElementById('test2'))
+
+        const p = {name:'老刘',age:20,sex:'女'}
+        // console.log('@',...p)
+        // 这 <Person {...p}/> 里的 {...p} 与原生 js 中的意思不一样
+        // 在原生js中表示复制一个p对象，而在这里通过babel翻译，它的意思就是批量传递 props
+        ReactDOM.render(<Person {...p}/>,document.getElementById('test3'))
+    </script>
+</body>
+</html>
