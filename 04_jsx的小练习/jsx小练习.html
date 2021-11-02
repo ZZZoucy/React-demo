@@ -17,7 +17,44 @@
     <!-- 引入babel，用于将jsx转为js -->
     <script src="../js/babel.min.js"></script>
 
-    <script type="text/babel">  /* 此处一定要写babel */
+    <script type="text/babel">
+    // 模拟一些数据
+    const data = ['Angular','React','Vue']
+
+    // React的数据给数组是可以的，但是给对象会报错
+    // const data2 = {name1:'Angular',name2:'React',name3:'Vue'}
+
+
+    // 创建虚拟DOM
+    const VDOM = (
+        <div>
+            <h1>前端js框架列表</h1>
+            <ul>
+                {
+                    data.map((item,index)=>{
+                        return <li key={index}>{item}</li>
+                    })
+                }    
+            </ul>    
+        </div>
+    )
+    // 渲染虚拟DOM到页面
+    ReactDOM.render(VDOM,document.getElementById('test'))
+
+    /*
+        一定要区分：【js表达式】和【js代码(语句)】
+            1. js表达式：一个表达式会产生一个值，可以放在任何一个需要值的地方
+                (1) a
+                (2) a+b
+                (3) demo(1)
+                (4) arr.Map((num)=>{ return num++ })
+                (5) function fun(){}
+
+            2. js代码(语句) ：
+                (1) if(){}
+                (2) for(){}
+                (3) switch(){case:xxx}
+    */
         
     </script>
 </body>
